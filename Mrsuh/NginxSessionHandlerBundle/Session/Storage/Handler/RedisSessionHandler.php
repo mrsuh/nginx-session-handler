@@ -46,7 +46,6 @@ class RedisSessionHandler implements \SessionHandlerInterface
             $userRole = 'IS_AUTHENTICATED_ANONYMOUSLY';
         }
 
-        var_dump($userId, $userRole);
         $key = $this->getRedisKey($sessionId);
         $this->redis->hmset($key, self::PREFIX_PHP_SESSION, $data, self::PREFIX_USER_ID, $userId, self::PREFIX_USER_ROLE, $userRole);
         $this->redis->expire($key, $this->ttl);

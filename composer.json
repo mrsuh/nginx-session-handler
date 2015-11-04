@@ -1,13 +1,16 @@
 {
     "name" : "mrsuh/nginx-session-handler",
-    "description" : "Nginx session handler",
     "type" : "symfony-bundle",
+    "description" : "Nginx session handler",
+    "keywords" : ["nginx", "redis", "lua", "session"],
+    "homepage": "https://github.com/mrsuh/nginx-session-handler",
     "license": "MIT",
     "authors" : [{
         "name" : "mrsuh",
-        "email" : "mrsuh6@gmail.com"
+        "email" : "mrsuh6@gmail.com",
+        "role": "Developer"
     }],
-    "keywords" : ["nginx", "redis", "lua", "session"],
+
     "require" : {
         "php": ">=5.3.0",
         "snc/redis-bundle": "1.1.*"

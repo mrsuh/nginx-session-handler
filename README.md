@@ -4,20 +4,20 @@ nginx-session-handler
 install
 --
 ```
-composer require mrsuh/nginx-session-handler
+composer require mrsuh/nginx-session-handler:1.*
 ```
 
 
-in app/AppKernel.php
+add to app/AppKernel.php
 
 ```
-new Anton\TBundle\AntonTBundle()
+new Mrsuh\NginxSessionHandlerBundle\MrsuhNginxSessionHandlerBundle()
 ```
 
 
-in config.yml
+add to config.yml
 ```
-mrsuh_ngxin_session_handler:
+mrsuh_nginx_session_handler:
     session_lifetime: 3600
     session_prefix: phpsession
 

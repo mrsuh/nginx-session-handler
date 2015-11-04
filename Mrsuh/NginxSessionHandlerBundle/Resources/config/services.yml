@@ -4,5 +4,5 @@ parameters:
         session_prefix: %nsh.session_prefix%
 services:
     mrsuh.session_handler:
-        class: Mrsuh\NginxSessionHandlerBundle\Session\RedisSessionHandler
+        class: Mrsuh\NginxSessionHandlerBundle\Session\Storage\Handler\RedisSessionHandler
         arguments: [@snc_redis.default, @security.token_storage, %nsh%]
