@@ -1,0 +1,25 @@
+{
+    "name" : "mrsuh/nginx-session-handler",
+    "description" : "Ngxin sessoni handler",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "anton",
+        "email" : "mtsuh6@gmail.com"
+    }],
+    "keywords" : [
+        "nginx redis lua session"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+        "php": ">=5.3.0",
+        "snc/redis-bundle": "1.1.x-dev"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Company\\DemoBundle" : ""
+        }
+    },
+    "target-dir" : "mrsuh/nginx-session-handler"
+}
