@@ -13,7 +13,8 @@
 
     "require" : {
         "php": ">=5.3.0",
-        "snc/redis-bundle": "1.1.*"
+        "snc/redis-bundle": "1.1.*",
+        "predis/predis": "~1.0"
     },
     "autoload": {
         "psr-0": { "Mrsuh\\NginxSessionHandler": "" }
