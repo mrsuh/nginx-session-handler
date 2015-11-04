@@ -23,5 +23,5 @@ mrsuh_nginx_session_handler:
 
 framework:
     session:
-        handler_id:  anton_t.test
+        handler_id:  mrsuh.session_handler
 ```
