@@ -2,19 +2,18 @@
     "name" : "mrsuh/nginx-session-handler",
     "description" : "Nginx session handler",
     "type" : "symfony-bundle",
+    "license": "MIT",
     "authors" : [{
         "name" : "mrsuh",
         "email" : "mrsuh6@gmail.com"
     }],
-    "keywords" : [
-        "nginx",
-        "redis",
-        "lua",
-        "session"
-    ],
+    "keywords" : ["nginx", "redis", "lua", "session"],
     "require" : {
         "php": ">=5.3.0",
         "snc/redis-bundle": "1.1.*"
+    },
+    "autoload": {
+        "psr-0": { "Mrsuh\\NginxSessionHandler": "" }
     },
     "target-dir" : "mrsuh/nginx-session-handler"
 }
