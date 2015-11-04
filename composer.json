@@ -3,8 +3,8 @@
     "description" : "Ngxin sessoni handler",
     "type" : "symfony-bundle",
     "authors" : [{
-        "name" : "anton",
-        "email" : "mtsuh6@gmail.com"
+        "name" : "anton.s",
+        "email" : "mrsuh6@gmail.com"
     }],
     "keywords" : [
         "nginx redis lua session"
