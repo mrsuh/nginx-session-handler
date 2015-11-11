@@ -4,7 +4,6 @@
 [![Total Downloads](https://poser.pugx.org/mrsuh/nginx-session-handler/downloads)](https://packagist.org/packages/mrsuh/nginx-session-handler)
 [![License](https://poser.pugx.org/mrsuh/nginx-session-handler/license)](https://packagist.org/packages/mrsuh/nginx-session-handler)
 
-This bundle
 This bundle integrates [predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony2 application
 So, you need to configure the bundles too.
 
@@ -43,8 +42,8 @@ mrsuh_nginx_session_handler:
 
 ```
 
-add to nginx.conf
-```conf
+Add to nginx.conf
+```apacheconf
 location /security {
 content_by_lua_file session.lua;
 }
