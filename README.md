@@ -1,7 +1,11 @@
 # nginx-session-handler #
 
+[![Latest Stable Version](https://poser.pugx.org/mrsuh/nginx-session-handler/v/stable)](https://packagist.org/packages/mrsuh/nginx-session-handler)
+[![Total Downloads](https://poser.pugx.org/mrsuh/nginx-session-handler/downloads)](https://packagist.org/packages/mrsuh/nginx-session-handler)
+[![License](https://poser.pugx.org/mrsuh/nginx-session-handler/license)](https://packagist.org/packages/mrsuh/nginx-session-handler)
+
 This bundle
-This bundle integrates [Predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony2 application
+This bundle integrates [predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony2 application
 So, you need to configure the bundles too.
 
 ## Installation ##
