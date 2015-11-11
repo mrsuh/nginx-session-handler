@@ -1,40 +1,49 @@
-nginx-session-handler
-=====================
+# nginx-session-handler #
 
-Bundle require snc/redis-bundle. First setting it.
-install
---
-```
+This bundle
+This bundle integrates [Predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony2 application
+So, you need to configure the bundles too.
+
+## Installation ##
+
+Add the nginx-session-handler package to your require section in the composer.json file.
+
+```bash
 composer require mrsuh/nginx-session-handler:1.*
 ```
 
+Add the NginxSessionHandlerBundle to your application's kernel:
 
-add to app/AppKernel.php
-
+``` php
+<?php
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Mrsuh\NginxSessionHandlerBundle\MrsuhNginxSessionHandlerBundle(),
+        // ...
+    );
+    ...
+}
 ```
-...
-new Mrsuh\NginxSessionHandlerBundle\MrsuhNginxSessionHandlerBundle()
-...
-```
 
-
-add to config.yml
-```
-...
+Configure the `session`  in your `config.yml`:
+```yaml
 framework:
     session:
         handler_id:  mrsuh.session_handler
-...
+
 mrsuh_nginx_session_handler:
     session_lifetime: 3600
     session_prefix: phpsession
-...
-```
 
+```
 
 add to nginx.conf
-```
+```conf
 location /security {
 content_by_lua_file session.lua;
 }
 ```
+
+Now your php session locate in redis. Your location `/security` allow for authenticated users with role ROLE_ADMIN only.
