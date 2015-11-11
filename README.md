@@ -42,7 +42,7 @@ mrsuh_nginx_session_handler:
 
 ```
 
-Add to nginx.conf
+Add  `session.lua` script to your nginx.conf
 ```apacheconf
 location /security {
 content_by_lua_file session.lua;
