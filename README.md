@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/mrsuh/nginx-session-handler/downloads)](https://packagist.org/packages/mrsuh/nginx-session-handler)
 [![License](https://poser.pugx.org/mrsuh/nginx-session-handler/license)](https://packagist.org/packages/mrsuh/nginx-session-handler)
 
-This bundle integrates [predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony2 application
+This bundle integrates [predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony3 application
 So, you need to configure the bundles too.
 
 ## Installation ##
@@ -12,7 +12,7 @@ So, you need to configure the bundles too.
 Add the nginx-session-handler package to your require section in the composer.json file.
 
 ```bash
-composer require mrsuh/nginx-session-handler:1.*
+composer require mrsuh/nginx-session-handler:2.*
 ```
 
 Add the NginxSessionHandlerBundle to your application's kernel:
