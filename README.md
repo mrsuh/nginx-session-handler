@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/mrsuh/nginx-session-handler/downloads)](https://packagist.org/packages/mrsuh/nginx-session-handler)
 [![License](https://poser.pugx.org/mrsuh/nginx-session-handler/license)](https://packagist.org/packages/mrsuh/nginx-session-handler)
 
-This bundle integrates [predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony3 application
+This bundle integrates [predis](https://github.com/nrk/predis) and [snc/redis-bundle](https://github.com/snc/SncRedisBundle) into your Symfony 3/4 application
 So, you need to configure the bundles too.
 
 ## Installation ##
@@ -15,7 +15,7 @@ Add the nginx-session-handler package to your require section in the composer.js
 composer require mrsuh/nginx-session-handler:2.*
 ```
 
-Add the NginxSessionHandlerBundle to your application's kernel:
+Add the NginxSessionHandlerBundle to your application's kernel (Symfony 3):
 
 ``` php
 <?php
@@ -45,7 +45,7 @@ mrsuh_nginx_session_handler:
 Add  `session.lua` script to your nginx.conf
 ```apacheconf
 location /security {
-content_by_lua_file session.lua;
+    content_by_lua_file session.lua;
 }
 ```
 
