@@ -2,37 +2,33 @@
 
 namespace Mrsuh\NginxSessionHandlerBundle\Session\Storage\Handler;
 
+use Predis\ClientInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
 class RedisSessionHandler implements \SessionHandlerInterface
 {
     const PREFIX_PHP_SESSION = 'php-session';
     const PREFIX_USER_ID     = 'user-id';
     const PREFIX_USER_ROLE   = 'user-role';
 
-    private $redis;
-    private $tokenStorage;
-    private $ttl;
-    private $prefix;
+    private ClientInterface       $redis;
+    private TokenStorageInterface $tokenStorage;
+    private int                   $ttl;
+    private string                $prefix;
 
-    /**
-     * RedisSessionHandler constructor.
-     * @param $redis
-     * @param $tokenStorage
-     * @param array $params
-     */
-    public function __construct($redis, $tokenStorage, array $params)
+    public function __construct(ClientInterface $redis, TokenStorageInterface $tokenStorage, array $params)
     {
         $this->tokenStorage = $tokenStorage;
-        $this->redis = $redis;
-        $this->prefix = $params['session_prefix'] ?: 'phpsession';
-        $this->ttl = $params['session_lifetime'] ?: 3600;
+        $this->redis        = $redis;
+        $this->prefix       = $params['session_prefix'] ?: 'phpsession';
+        $this->ttl          = $params['session_lifetime'] ?: 3600;
     }
 
     /**
-     * @param string $savePath
-     * @param string $sessionName
-     * @return bool
+     * @param string $path
+     * @param string $name
      */
-    public function open($savePath, $sessionName)
+    public function open($path, $name): bool
     {
         return true;
     }
@@ -40,67 +36,63 @@ class RedisSessionHandler implements \SessionHandlerInterface
     /**
      * @return bool
      */
-    public function close()
+    public function close(): bool
     {
         return true;
     }
 
     /**
-     * @param string $sessionId
-     * @return string
+     * @param string $id
      */
-    public function read($sessionId)
+    public function read($id): string
     {
-        return $this->redis->hget($this->getRedisKey($sessionId), self::PREFIX_PHP_SESSION) ?: '';
+        return $this->redis->hget($this->getRedisKey($id), self::PREFIX_PHP_SESSION) ?: '';
     }
 
     /**
-     * @param string $sessionId
+     * @param string $id
      * @param string $data
-     * @return bool
      */
-    public function write($sessionId, $data)
+    public function write($id, $data): bool
     {
         if ($this->tokenStorage->getToken() && is_object($user = $this->tokenStorage->getToken()->getUser())) {
-            $userId = $user->getId();
+            $userId    = $user->getId();
             $userRoles = $user->getRoles();
         } else {
-            $userId = null;
+            $userId    = null;
             $userRoles = ['IS_AUTHENTICATED_ANONYMOUSLY'];
         }
 
-        $key = $this->getRedisKey($sessionId);
-        $this->redis->hmset($key, self::PREFIX_PHP_SESSION, $data, self::PREFIX_USER_ID, $userId, self::PREFIX_USER_ROLE, implode(' ',$userRoles));
+        $key = $this->getRedisKey($id);
+        $this->redis->hmset($key, [
+            self::PREFIX_PHP_SESSION => $data,
+            self::PREFIX_USER_ID     => $userId,
+            self::PREFIX_USER_ROLE   => implode(' ', $userRoles)
+        ]);
         $this->redis->expire($key, $this->ttl);
 
         return true;
     }
 
     /**
-     * @param string $sessionId
-     * @return bool
+     * @param string $id
      */
-    public function destroy($sessionId)
+    public function destroy($id): bool
     {
-        $this->redis->del($this->getRedisKey($sessionId));
+        $this->redis->del($this->getRedisKey($id));
 
         return true;
     }
 
     /**
-     * @param int $lifetime
-     * @return bool
+     * @param int $max_lifetime
      */
-    public function gc($lifetime)
+    public function gc($max_lifetime): int|false
     {
-        return true;
+        return 0;
     }
 
-    /**
-     * @param $sessionId
-     * @return string
-     */
-    private function getRedisKey($sessionId)
+    private function getRedisKey($sessionId): string
     {
         return $this->prefix . ':' . $sessionId;
     }

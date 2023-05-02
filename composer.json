@@ -10,11 +10,11 @@
         "email" : "mrsuh6@gmail.com",
         "role": "Developer"
     }],
-
     "require" : {
-        "php": ">=5",
+        "php": "^8.2",
         "snc/redis-bundle": ">=3",
-        "predis/predis": ">=1"
+        "predis/predis": ">=1",
+        "symfony/security-core": ">=4"
     },
     "autoload": {
         "psr-0": { "Mrsuh\\NginxSessionHandler": "" }
